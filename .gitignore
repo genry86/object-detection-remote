@@ -1,0 +1,25 @@
+# Node.js
+.env
+
+# Python
+__pycache__/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# JetBrains IDEs
+.idea/
+
+# Data
+data/*
+dataset/train/*
+dataset/val/*
+
+# Test
+tests/*
+
+# iOS
+iOS/Pods/*

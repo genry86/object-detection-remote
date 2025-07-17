@@ -1,0 +1,44 @@
+[
+    {
+        "image": "dataset/val/val1.jpeg",
+        "annotations": [
+            {
+                "label": "controller",
+                "coordinates": {
+                    "x": 1558.5,
+                    "y": 1975.0,
+                    "width": 2655,
+                    "height": 1328
+                }
+            }
+        ]
+    },
+    {
+        "image": "dataset/val/val2.jpeg",
+        "annotations": [
+            {
+                "label": "controller",
+                "coordinates": {
+                    "x": 1430.0,
+                    "y": 1653.5,
+                    "width": 2046,
+                    "height": 949
+                }
+            }
+        ]
+    },
+    {
+        "image": "dataset/val/val3.jpeg",
+        "annotations": [
+            {
+                "label": "controller",
+                "coordinates": {
+                    "x": 1331.5,
+                    "y": 1802.5,
+                    "width": 1509,
+                    "height": 1355
+                }
+            }
+        ]
+    }
+]

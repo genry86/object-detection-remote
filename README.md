@@ -51,21 +51,33 @@ Note: some parts are not yet refactored and pythons' scripts for Pytorch, Tensor
 
 ```
 ## Python
-git clone https://github.com/genry86/Classification_Face_Parts.git
-cd Classification_Face_Parts
-pip3 install -r requirements.txt
-
-python data_download.py # to download CalebA dataset from kagglehub
-python dataset_prepare.py # clean-up csv file and copy/split all photos to tran/val/test folders.
-
+git clone https://github.com/genry86/object-detection-remote
+cd object-detection-remote
+ 
 Use "pt" folder to work with pytorch. "train.py"
 User "tf" to work with tensorflow. "train.py"
 
-"test_models.py" file is used to show visual results of both generated models.
-"convert_to_coreml.py" is used to convert both models to CoreML format, in order to be used on iOS phones.
+For ultralytics:
+ - register account on their website(free).
+ - create object-detection project.
+ - upload dataset using "dataset" folder. 
+ - download their script for local training or copy training key and insert it to existing script.
+ - run `python train.py`
+   
+For create-ml:
+- create `object-detection` project
+- upload training images and validation images from dataset folder.
+- start training
 
- ## iOS
+Converting.
+"convert_to_coreml.py" is used to convert pytorch/tensorflow models to CoreML types, to use in Xcode.
+CreateML model is native for xcode and can be used as is.
+Ultralytics model may be converted with terminal command like:
+`yolo export model=runs/detect/train/weights/best.pt format=coreml optimize=False half=False`
+
+## iOS
 cd iOS
 pod install
-run ImageClassification.xcworkspace
-# iOS will use real-time front camera to get image of your face to detect landmarks. Result photos will go to through trained models(Pytorch and Tensorflow). Results will be showed on the screen. 
+run ObjDetector.xcworkspace
+Use your provision profile.
+# iOS will use real-time camera to get photos and using selected model tv-remote will be recognized with red rect(see screenshots) 
