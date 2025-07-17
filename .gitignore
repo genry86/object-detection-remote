@@ -13,11 +13,6 @@ __pycache__/
 # JetBrains IDEs
 .idea/
 
-# Data
-data/*
-dataset/train/*
-dataset/val/*
-
 # Test
 tests/*
 
