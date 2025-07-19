@@ -26,20 +26,20 @@ do {
         augmentation: [.flip, .exposure, .rotation, .blur, .crop, .noise]
     )
     
-    // Обучаем модель
+    // Train the model
     let classifier = try MLImageClassifier(trainingData: data, parameters: parameters)
 
-    // Проверим качество
+    // Check quality
     let trainingMetrics = classifier.trainingMetrics
     let validationMetrics = classifier.validationMetrics
 
     print("description: \(trainingMetrics.description)")
  
-    // Сохраняем модель
+    // Save the model
     try classifier.write(to: modelURL)
 
-    print("✅ Модель успешно сохранена!")
+    print("✅ Model saved successfully!")
 
 } catch {
-    print("❌ Ошибка: \(error)")
+    print("❌ Error: \(error)")
 }

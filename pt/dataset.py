@@ -16,9 +16,9 @@ class RemoteDataset(Dataset):
     def __init__(self, json_path, root_dir, transforms=None):
         """
         Args:
-            json_path (str): путь к JSON файлу с аннотациями.
-            root_dir (str): корневая директория проекта.
-            transforms (callable, optional): трансформации, применяемые к изображениям и аннотациям.
+            json_path (str): path to JSON file with annotations.
+            root_dir (str): project root directory.
+            transforms (callable, optional): transformations applied to images and annotations.
         """
         self.root_dir = root_dir
         self.transforms = transforms

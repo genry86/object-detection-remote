@@ -12,12 +12,12 @@ from model import SSDMobileNet
 from utils import encode_boxes, cXcYwh_to_x1y1x2y2
 
 # ------------------------
-# Настройка устройства
+# Device setup
 # ------------------------
 device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
 # ------------------------
-# Аугментации
+# Augmentations
 # ------------------------
 train_transform = transforms.Compose([
     transforms.Resize((2016, 1512)),  # (height, width)
@@ -35,7 +35,7 @@ val_transform = transforms.Compose([
 ])
 
 # ------------------------
-# Загрузка датасета
+# Dataset loading
 # ------------------------
 BASE_DIR = "../"
 dataset_path = os.path.join(BASE_DIR, "dataset/train.json")
@@ -56,7 +56,7 @@ train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, co
 val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False, collate_fn=lambda x: tuple(zip(*x)))
 
 # ------------------------
-# Модель, оптимизатор, лоссы
+# Model, optimizer, losses
 # ------------------------
 model = SSDMobileNet(num_classes=2).to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)

@@ -7,7 +7,7 @@ from dataset import RemoteDatasetTF
 from model import build_model
 from EpochTracker import EpochTracker
 
-# === Лоссы ===
+# === Losses ===
 def focal_loss(gamma=2.0, alpha=0.25):
     def loss_fn(y_true, y_pred):
         eps = tf.keras.backend.epsilon()
@@ -23,7 +23,7 @@ def smooth_l1_loss(y_true, y_pred, delta=1.0):
     loss = less_than_delta * 0.5 * tf.pow(diff, 2) + (1 - less_than_delta) * (diff - 0.5)
     return tf.reduce_mean(loss)
 
-# === Параметры ===
+# === Parameters ===
 model_dir = "../training_model"
 os.makedirs(model_dir, exist_ok=True)
 
@@ -37,7 +37,7 @@ image_size = (320, 320)
 json_path = "../dataset/train.json"
 root_dir = "../"
 
-# === Аугментации ===
+# === Augmentations ===
 augmentation = tf.keras.Sequential([
     tf.keras.layers.RandomFlip("horizontal"),
     tf.keras.layers.RandomRotation(0.0417),

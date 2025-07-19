@@ -13,7 +13,7 @@ def preprocess_image(image_path):
     img = img / 255.0
     return img
 
-# === Тестирование модели ===
+# === Model testing ===
 def test_model(model, json_path="../dataset/val.json", base_dir="../"):
     with open(json_path, 'r') as f:
         data = json.load(f)

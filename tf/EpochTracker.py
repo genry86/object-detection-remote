@@ -7,4 +7,4 @@ class EpochTracker(tf.keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs=None):
         with open(self.filepath, 'w') as f:
-            f.write(str(epoch + 1))  # +1 чтобы сохранять номер следующей эпохи
+            f.write(str(epoch + 1))  # +1 to save the next epoch number

@@ -92,30 +92,30 @@ if __name__ == "__main__":
 
     device = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
 
-    # === Шаг 1: Загрузить JSON и выбрать случайное фото ===
+    # === Step 1: Load JSON and select random photo ===
     json_path = "../dataset/val.json"
     with open(json_path, 'r') as f:
         data = json.load(f)
 
-    sample = random.choice(data)  # Случайная запись из валидационного json
-    rel_img_path = sample["image"]  # относительный путь к фото
-    abs_img_path = os.path.join("../", rel_img_path)  # абсолютный путь
+    sample = random.choice(data)  # Random entry from validation json
+    rel_img_path = sample["image"]  # relative path to photo
+    abs_img_path = os.path.join("../", rel_img_path)  # absolute path
 
-    # === Шаг 2: Загрузить изображение и аннотации ===
+    # === Step 2: Load image and annotations ===
     image = Image.open(abs_img_path).convert("RGB")
     annotation = sample["annotations"][0]
     cx, cy = annotation["coordinates"]["x"], annotation["coordinates"]["y"]
     w, h = annotation["coordinates"]["width"], annotation["coordinates"]["height"]
 
-    # === Шаг 3: Преобразование изображения ===
+    # === Step 3: Image transformation ===
     transform = transforms.Compose([
-        transforms.Resize((2016, 1512)),  # (высота, ширина)
+        transforms.Resize((2016, 1512)),  # (height, width)
         transforms.ToTensor()
     ])
     image_tensor = transform(image).unsqueeze(0).to(device)  # Tensor[1, 3, 2016, 1512]
     resized_image_np = image_tensor.squeeze(0).permute(1, 2, 0).cpu().numpy()  # Tensor[2016, 1512, 3]
 
-    # === Шаг 4: Создать модель и получить анкоры ===
+    # === Step 4: Create model and get anchors ===
     model = SSDMobileNet().to(device)
     model.eval()
     with torch.no_grad():
